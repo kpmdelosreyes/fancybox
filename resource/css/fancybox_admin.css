@@ -15,3 +15,15 @@
 .img_url_summary span {margin-right:10px}
 .img_url_summary span a {text-decoration:underline}
 .del_btn img {width:14px !important;height:13px !important;border:none !important;display:inline-block}
+
+/* Add Popup */
+
+.sub_title {float:left;background:#606060;paddEaing:5px 10px;height:24px;border:1px solid #d5d5d4;border-bottom:0 !important;display:inline-block;background:#fff}
+.sub_title span {font-size:14px;font-style:italic}
+.add_form_wrap {margin-top:-1px;width:100%;background:#fff;text-align:center;border:1px solid #d5d5d4;display:inline-block;border-top:0}
+.add_form_wrap form.fancybox_add {width:94%;padding:0 3px;background:#fff;display:inline-block;text-align:center}
+.add_form_wrap form table.table_input_vr {margin-top:20px;width:100% !important;border:1px solid red;}
+.btn_nor_01 {margin-top:30px}
+
+/* Search */
+.table_header_area .search .input_text, .table_header_area .search .btn_nor_01 {margin:0 !important}
