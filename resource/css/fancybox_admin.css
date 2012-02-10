@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+.necessary {color:#ed1707;float:right;margin-right:4px}
+/* Table Form - Additional CSS */
+.table_input_vr input {width:300px}
+.custom  span {display:inline-block;margin-right:13px}
+.custom label {vertical-align:middle;width:50px}
+.custom input {width:95px;vertical-align:middle;margin-left:10px;}
+.btn_ly {height:15px !important}
+
+/* Image Summary */
+.img_url_summary {display:inline-block}
+.img_url_summary li {margin-bottom:5px}
+.img_url_summary li img {width:20px;height:auto;border:1px solid #ccc;display:inline-block;vertical-align:middle;margin-right:10px}
+.img_url_summary span {margin-right:10px}
+.img_url_summary span a {text-decoration:underline}
+.del_btn img {width:14px !important;height:13px !important;border:none !important;display:inline-block}

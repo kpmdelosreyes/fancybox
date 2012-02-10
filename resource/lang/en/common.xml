@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <lang>
+    <menu>  
+        <var name="fancybox">Fancybox</var>
+        <var name="fancybox_add">Add New Image</var>
+        <mostbutton>
+            <var param="FancyboxPageSetup">Add New Image</var>
+            <var param="FancyboxPageAddImage">Add New Image</var>
+        </mostbutton>
+    </menu>
     <var name="lang">Language</var>
     <var name="name">English</var>
 </lang>
+
