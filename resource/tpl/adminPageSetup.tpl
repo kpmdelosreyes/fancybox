@@ -61,8 +61,8 @@
            <td colspan="7" align="center"> No record(s) found.</td>
        </tr>
     <?php }else{ ?>
-    <?php foreach($aImageList as $key => $value): ?>
-   
+    <?php $images = ""; foreach($aImageList as $key => $value): ?>
+    <?php $images .=  $value['image_url'] . ",";?>
     	<tr class="event_mouse_over"> 
     	   
           <td><input type="checkbox" class="input_chk" name="checkThis" id="checkThis" value="<?php echo $value['idx'];?>" /></td>
@@ -79,7 +79,7 @@
           <input type="hidden"  name="hidden_id" id="hidden_id_<?php echo $key?>" value="<?php echo $value['idx']; ?>" />
           <input type="hidden"  name="hidden_url" id="hidden_url_<?php echo $key?>"  value="<?php echo $value['image_url']; ?>" />
           <input type="hidden"  name="hidden_size" id="hidden_size_<?php echo $key?>" value="<?php echo $value['image_size']; ?>" />  
-          <input type="text"  name="hidden_title" id="hidden_title_<?php echo $key?>" value="<?php echo $value['title']; ?>" />  
+          <input type="hidden"  name="hidden_title" id="hidden_title_<?php echo $key?>" value="<?php echo $value['title']; ?>" />  
           <input type="hidden"  name="hidden_width" id="hidden_width_<?php echo $key?>" value="<?php echo $value['width']; ?>" />  
           <input type="hidden"  name="hidden_height" id="hidden_height_<?php echo $key?>" value="<?php echo $value['height']; ?>" />   
           <input type="hidden"  name="hidden_caption" id="hidden_caption_<?php echo $key?>" value="<?php echo $value['caption']; ?>" />   
@@ -87,14 +87,17 @@
         </tr>
             
 	<?php endforeach;?>
+	
 	<?php } ?>
 	<input type="hidden"  name="hidden_id" id="hidden_id" value="" />
+	<input type="hidden"  name="hidden_images" id="hidden_images" value="<?php echo $images;?>" />
     </tbody>
 </table>
 
     <div class="table_display_set">
     	<a href="#none" onclick="adminPageSetup.deletePopup();" class="btn_nor_01 btn_width_st1" title="Remove selected images">Remove</a>
     </div>
+    <span id="myspan" style="text-decoration: underline; cursor:pointer;">click to view gallery</span>
     <div class="tbl_btom_rgt">
     	<a href="#none" onclick="adminPageSetup.Change();" class="btn_nor_01 btn_width_st2" title="Rearrange images">Rearrange</a>
     </div>
@@ -198,8 +201,8 @@ layer big image end -->
 								<span class="modi_img_wrap" id="realimage" ></span>
 								<ul class="image_detail_wrap">
 									<li ><p id="imageURL"> </p></li>
-									<li>Filetype : image/jpeg</li>
-									<li id="upload_date"> Upload Date : </li>
+									<li id="filetype"></li>
+									<li id="upload_date"></li>
 									<li id="size"></li>
 									<li id="dimension" ></li>
 								</ul>

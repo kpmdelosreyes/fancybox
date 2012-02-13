@@ -1,8 +1,17 @@
 $(document).ready(function(){
 	$('.msg_warn_box').hide();
-	
-	
-	
+	alert($("#hidden_images").val());
+	$("#myspan").click(function() {
+        $.fancybox([
+                    $("#hidden_images").val()
+            ], {
+                'padding'           : 0,
+                'transitionIn'      : 'none',
+                'transitionOut'     : 'none',
+                'type'              : 'image',
+                'changeFade'        : 0
+            });
+        });
 	/*$('.modifyThis').live("click", function(){
 		$("#fancybox_addimage_popup_contents").fancybox({'scrolling' : 'no', 'titleShow' : 'false'});
 		popup.load('fancybox_modifyimage_popup_contents').skin('admin').layer({'title' : 'Modify Image','width' : 650});
@@ -64,9 +73,12 @@ var adminPageSetup = {
 	 	popup.load('fancybox_modifyimage_popup_contents').skin('admin').layer({'title' : 'Modify Image','width' : 650});
 	 	$("#hidden_id").val($("#hidden_id_"+key).val());
 	 	
-	 	$("#realimage").html('<img src="'+$("#hidden_url_"+key).val()+'" alt="Image" style="width: 146px; height:150px"/>');
-	 	$("#imageURL").html("Image URL: " + $("#hidden_url_"+key).val());
+	 	var ext = $("#hidden_url_"+key).val().split('.').pop().toLowerCase();
+ 		
+	 	$("#realimage").html('<img src="'+$("#hidden_url_"+key).val()+'" alt="Image" style="width: 146px; height:150px;" />');
+	 	$("#imageURL").html('Image URL: <a href="#none" style="color:#5d7cb8" >' + $("#hidden_url_"+key).val() + "</a>");
 		$("#imagetitle").val($("#hidden_title_"+key).val());
+		$("#filetype").html("Filetype : image/"+ext);
 		$("#imagecaption").val($("#hidden_caption_"+key).val());
 		$("#upload_date").html("Upload Date : " + $("#hidden_date_"+key).val());
 		$("#size").html("Size : " + $("#hidden_date_"+key).val());
@@ -146,15 +158,14 @@ var adminPageSetup = {
 		var image_title = $("#hidden_title_"+key).val();
 		var image_width = parseInt($("#hidden_width_"+key).val());
 		var image_height = parseInt($("#hidden_height_"+key).val());
-	
 		
 		$.fancybox([{
-			maxWidth	: 800,
-			maxHeight	: 600,
-			fitToView	: false,
-			width		: image_width+'%',
-			height		: image_height+'%',
-			autoSize	: false,
+					maxWidth	: 800,
+					maxHeight	: 600,
+					fitToView	: false,
+					width		: image_width+'%',
+					height		: image_height+'%',
+					autoSize	: false,
 					showCloseButton : true,
 					showNavArrows : true,
 					href : image_url,
@@ -168,9 +179,7 @@ var adminPageSetup = {
 		
 		
 				
-	}
-	
-	
+	}	
 
 	
 }
