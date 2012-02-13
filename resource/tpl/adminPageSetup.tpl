@@ -72,16 +72,18 @@
           	 <p><?php echo $value['image_url']; ?></p>
 	         <p><?php echo $value['image_size']; ?></p>
 	      </td>         
-          <td><a href="#none" class="modifyThis" onclick="javascript: adminPageSetup.modifyThis(<?php echo $value['idx']; ?>);" title="View Image Details"><?php echo $value['title'];?></a></td>
+          <td><a href="#none" class="modifyThis" onclick="javascript: adminPageSetup.modifyThis(<?php echo $key; ?>);" title="View Image Details"><?php echo $value['title'];?></a></td>
           <td><?php echo $value['date_created'];?></td>
           <td><?php echo $value['idx'];?></td>    
     
           <input type="hidden"  name="hidden_id" id="hidden_id_<?php echo $key?>" value="<?php echo $value['idx']; ?>" />
           <input type="hidden"  name="hidden_url" id="hidden_url_<?php echo $key?>"  value="<?php echo $value['image_url']; ?>" />
           <input type="hidden"  name="hidden_size" id="hidden_size_<?php echo $key?>" value="<?php echo $value['image_size']; ?>" />  
-          <input type="hidden"  name="hidden_size" id="hidden_title_<?php echo $key?>" value="<?php echo $value['title']; ?>" />  
-          <input type="hidden"  name="hidden_size" id="hidden_width_<?php echo $key?>" value="<?php echo $value['width']; ?>" />  
-          <input type="hidden"  name="hidden_size" id="hidden_height_<?php echo $key?>" value="<?php echo $value['height']; ?>" />       
+          <input type="text"  name="hidden_title" id="hidden_title_<?php echo $key?>" value="<?php echo $value['title']; ?>" />  
+          <input type="hidden"  name="hidden_width" id="hidden_width_<?php echo $key?>" value="<?php echo $value['width']; ?>" />  
+          <input type="hidden"  name="hidden_height" id="hidden_height_<?php echo $key?>" value="<?php echo $value['height']; ?>" />   
+          <input type="hidden"  name="hidden_caption" id="hidden_caption_<?php echo $key?>" value="<?php echo $value['caption']; ?>" />   
+          <input type="hidden"  name="hidden_date" id="hidden_date_<?php echo $key?>" value="<?php echo $value['date_created']; ?>" />       
         </tr>
             
 	<?php endforeach;?>
@@ -193,34 +195,24 @@ layer big image end -->
 						<tr>
 							<th>File</th>
 							<td class="move">
-								<span class="modi_img_wrap"><img src="" alt="Image" /></span>
+								<span class="modi_img_wrap" id="realimage" ></span>
 								<ul class="image_detail_wrap">
-									<li>Filename : inside1.jpg</li>
+									<li ><p id="imageURL"> </p></li>
 									<li>Filetype : image/jpeg</li>
-									<li>Upload Date : 11/18/2011</li>
-									<li>Size : 230.85Kb</li>
-									<li>Dimensions : 749 x 524</li>
+									<li id="upload_date"> Upload Date : </li>
+									<li id="size"></li>
+									<li id="dimension" ></li>
 								</ul>
 							</td>
 						</tr>
 						<tr>
 							<th>Title</th>
-							<td class="move"> <input id="fancybox_imagetitle" name="fancybox_imagetitle" style="width:20px;" type="text" value="" fw-filter="isFill&isLengthRange[1][50]" fw-label="Image_title" />		
-							</td>
-						</tr>
-						<tr>
-							<th>Description</th>
-							<td class="move"><textarea id="fancybox_imagecaption" /></textarea>		
-							</td>
-						</tr>
-						<tr>
-							<th>Alternate Text</th>
-							<td class="move"> <input id="fancybox_imagetitle" name="fancybox_imagetitle" style="width:20px;" type="text" value="" fw-filter="isFill&isLengthRange[1][50]" fw-label="Image_title" />		
+							<td class="move"> <input id="imagetitle" name="imagetitle" style="width:20px;" type="text" fw-filter="isFill&isLengthRange[1][50]" fw-label="Image_title" />		
 							</td>
 						</tr>
 						<tr>
 							<th>Caption</th>
-							<td class="move"> <input id="fancybox_imagetitle" name="fancybox_imagetitle" style="width:20px;" type="text" value="" fw-filter="isFill&isLengthRange[1][50]" fw-label="Image_title" />		
+							<td class="move"> <input id="imagecaption" name="imagecaption" style="width:20px;" type="text" fw-filter="isFill&isLengthRange[1][50]" fw-label="Image_caption" />		
 							</td>
 						</tr>
 						<tr>

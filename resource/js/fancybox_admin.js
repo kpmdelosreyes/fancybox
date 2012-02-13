@@ -60,14 +60,22 @@ var adminPageSetup = {
 	
 	modifyThis : function(key)
 	{
-alert(key)
+
 	 	popup.load('fancybox_modifyimage_popup_contents').skin('admin').layer({'title' : 'Modify Image','width' : 650});
-	 	$("#hidden_id").val(key);
+	 	$("#hidden_id").val($("#hidden_id_"+key).val());
+	 	
+	 	$("#realimage").html('<img src="'+$("#hidden_url_"+key).val()+'" alt="Image" style="width: 146px; height:150px"/>');
+	 	$("#imageURL").html("Image URL: " + $("#hidden_url_"+key).val());
+		$("#imagetitle").val($("#hidden_title_"+key).val());
+		$("#imagecaption").val($("#hidden_caption_"+key).val());
+		$("#upload_date").html("Upload Date : " + $("#hidden_date_"+key).val());
+		$("#size").html("Size : " + $("#hidden_date_"+key).val());
+		$("#dimension").html("Dimension : "+ $("#hidden_size_"+key).val());
 	},
 	
 	modify : function()
 	{
-alert($("#hidden_id").val());
+
 		$.ajax({
 			type: "POST",
 			url: usbuilder.getUrl("apiContentsModify"),

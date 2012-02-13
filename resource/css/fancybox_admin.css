@@ -26,9 +26,10 @@
 .add_form_wrap form table.table_input_vr tr td input {width:98% !important;padding:0 !important}
 .add_form_wrap form table.table_input_vr tr td textarea {width:98% !important;padding:0 !important}
 .modi_img_wrap {width:28%;height:150px;margin-right:20px;float:left;border:1px solid #d5d5d4}
-.image_detail_wrap {width:62%;float:left}
+.image_detail_wrap {width:69%;float:left}
 
 .mod_btn .btn_popup_fix {border:1px solid red}
+#imageURL {word-wrap:break-word}
 
 /* Search */
 .table_header_area .search .input_text, .table_header_area .search .btn_nor_01 {margin:0 !important}

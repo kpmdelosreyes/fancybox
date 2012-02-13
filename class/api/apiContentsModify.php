@@ -7,7 +7,7 @@ class apiContentsModify extends Controller_Api
 		usbuilder()->init($this->Request->getAppID(), $aArgs);
 	
 		$oModelContents = new modelFancybox();
-		$bResult = $oModelContents->updateContents($aArgs[idx]);
+		$bResult = $oModelContents->updateContents($aArgs);
 	
 	}
 }
