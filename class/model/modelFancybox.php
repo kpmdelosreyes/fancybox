@@ -11,9 +11,9 @@ class modelFancybox extends Model
 			$sQuery .= " WHERE image_url LIKE '%".$aOption[search]."%' OR title LIKE '%".$aOption[search]."%' ";
 		}
 		
-		if($aOption['filename'] != false)
+		if($aOption['image_url'] != false)
 		{
-			$sQuery .= " WHERE image_url LIKE '%".$aOption[filename]."%' ";
+			$sQuery .= " WHERE image_url LIKE '%".$aOption[image_url]."%' ";
 		}
 	 	if ($aOption['sortby']) {
 			$sQuery .= " ORDER BY $aOption[sortby] $aOption[sort]";
@@ -50,4 +50,11 @@ class modelFancybox extends Model
 		return $this->query($sQuery);
 	}
 	
+	function updateContents($aData)
+	{
+
+		$sQuery = "UPDATE fancybox_contents SET title ='".$aData[image_title]."', caption = '".$aData[image_caption]."' date_modified = ". time() . " WHERE idx=".$aData['idx'];
+		return $this->query($sQuery);
+	
+	}
 }

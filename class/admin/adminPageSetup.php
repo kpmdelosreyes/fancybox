@@ -19,12 +19,12 @@ class adminPageSetup extends Controller_Admin
 		$aOption['offset'] = $iRows * ($iPage - 1);
 
 	    $aOption['search'] = $aArgs['search'] ? $aArgs['search'] : "";
-	    $aOption['filename'] = $aArgs['filename'] ? $aArgs['filename'] : "";
+	    $aOption['image_url'] = $aArgs['image_url'] ? $aArgs['image_url'] : "";
 		$aOption['sortby'] = $aArgs['sortby'] ? $aArgs['sortby'] : "";
 		$aOption['sort'] = $aArgs['sort'] ? $aArgs['sort'] : ""; 
 		
 		$sSort = !$aArgs['sort'] || $aArgs['sort'] == '' || $aArgs['sort'] == 'asc' ? 'desc' : 'asc';
-        $sFilenameClass = $aArgs['sortby'] == 'filename' && $aArgs['sort'] == 'desc' ? 'des' : 'asc';
+        $sFilenameClass = $aArgs['sortby'] == 'image_url' && $aArgs['sort'] == 'desc' ? 'des' : 'asc';
         $sTitleClass = $aArgs['sortby'] == 'title' && $aArgs['sort'] == 'desc' ? 'des' : 'asc';
         $sDateClass = $aArgs['sortby'] == 'date_created' && $aArgs['sort'] == 'desc' ? 'des' : 'asc';
         $sApperanceClass = $aArgs['sortby'] == 'idx' && $aArgs['sort'] == 'desc' ? 'des' : 'asc';
@@ -59,8 +59,8 @@ class adminPageSetup extends Controller_Admin
         
         $this->importCSS('fancybox_admin');
         $this->importCSS('jquery.fancybox');
-
-        $this->importJS('jquery.fancybox');
+        
+        $this->importJS('jquery.fancybox');   
         $this->importJS('fancybox_admin');
 
 

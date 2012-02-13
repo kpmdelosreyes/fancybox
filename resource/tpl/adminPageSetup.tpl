@@ -49,7 +49,7 @@
        <th class="chk"><input type="checkbox" class="input_chk chk_all" onchange="javascript: adminPageSetup.checkAll(this);"/></th>
        <th width="10px">No.</th>
        <th width="200px">Thumbnail</th>
-       <th><a href="<?php echo usbuilder()->getUrl("adminPageSetup") .'&sortby=filename&sort='.$catClass1 ;?>" class="<?php echo $filenameClass;?>">Filename</a></th>
+       <th><a href="<?php echo usbuilder()->getUrl("adminPageSetup") .'&sortby=image_url&sort='.$catClass1 ;?>" class="<?php echo $filenameClass;?>">Filename</a></th>
        <th width="150px"><a href="<?php echo usbuilder()->getUrl("adminPageSetup") .'&sortby=title&sort='.$catClass1;?>" class="<?php echo $titleClass;?>">Title</a></th>
        <th width="150px"><a href="<?php echo usbuilder()->getUrl("adminPageSetup") .'&sortby=date_created&sort=' .$catClass1;?>" class="<?php echo $dateClass;?>">Date Created</a></th>
        <th width="150px"><a href="<?php echo usbuilder()->getUrl("adminPageSetup") .'&sortby=appearance&sort='.$catClass1;?>" class="<?php echo $datemodifiedClass;?>">Appearance</a></th>
@@ -62,18 +62,20 @@
        </tr>
     <?php }else{ ?>
     <?php foreach($aImageList as $key => $value): ?>
-    	<tr class="event_mouse_over">           
-          <td><input type="checkbox" class="input_chk" name="checkThis" value="<?php echo $value['idx'];?>" /></td>
+   
+    	<tr class="event_mouse_over"> 
+    	   
+          <td><input type="checkbox" class="input_chk" name="checkThis" id="checkThis" value="<?php echo $value['idx'];?>" /></td>
           <td><?php echo $value['num']; ?></td>
-          <td><div class="thmb_img"><a href="#none" onclick="javascript : adminPageSetup.fancyImage(<?php echo $key?>);" class="fancybox-thumbs" data-fancybox-group="thumb" ><img width="80px" title="View image" height="80px" src="<?php echo $value['image_url']; ?>" ></a></div></td>
+          <td><div class="thmb_img fancybox.image"><a href="#none" onclick="javascript : adminPageSetup.fancyImage(<?php echo $key?>);" class="fancybox-thumb" rel="fancybox-thumb" ><img width="80px" title="View image" height="80px" src="<?php echo $value['image_url']; ?>" ></a></div></td>
           <td>
           	 <p><?php echo $value['image_url']; ?></p>
 	         <p><?php echo $value['image_size']; ?></p>
 	      </td>         
-          <td><a href="<?php echo usbuilder()->getUrl("adminPageModifyContents"). '&idx=' . $value['idx']; ?>"  title="View Image Details"><?php echo $value['title'];?></a></td>
+          <td><a href="#none" class="modifyThis" onclick="javascript: adminPageSetup.modifyThis(<?php echo $value['idx']; ?>);" title="View Image Details"><?php echo $value['title'];?></a></td>
           <td><?php echo $value['date_created'];?></td>
           <td><?php echo $value['idx'];?></td>    
-          
+    
           <input type="hidden"  name="hidden_id" id="hidden_id_<?php echo $key?>" value="<?php echo $value['idx']; ?>" />
           <input type="hidden"  name="hidden_url" id="hidden_url_<?php echo $key?>"  value="<?php echo $value['image_url']; ?>" />
           <input type="hidden"  name="hidden_size" id="hidden_size_<?php echo $key?>" value="<?php echo $value['image_size']; ?>" />  
@@ -81,8 +83,10 @@
           <input type="hidden"  name="hidden_size" id="hidden_width_<?php echo $key?>" value="<?php echo $value['width']; ?>" />  
           <input type="hidden"  name="hidden_size" id="hidden_height_<?php echo $key?>" value="<?php echo $value['height']; ?>" />       
         </tr>
+            
 	<?php endforeach;?>
 	<?php } ?>
+	<input type="hidden"  name="hidden_id" id="hidden_id" value="" />
     </tbody>
 </table>
 
@@ -125,8 +129,8 @@ layer big image end -->
 			   <form name="fancybox_add" class="fancybox_add" method="post" enctype="multipart/form-data">
 					<table border="1" cellspacing="0" class="table_input_vr">
 						<colgroup>
-							<col width="115px" />
-							<col width="*" />
+							<col width="20%" />
+							<col width="80%" />
 						</colgroup>
 						<tr>
 							<th>URL</th>
@@ -140,13 +144,15 @@ layer big image end -->
 						</tr>
 						<tr>
 							<th>Image Caption</th>
-							<td class="move"> <textarea style="width:100% !important" id="fancybox_imagecaption" value="" /></textarea>		
+							<td class="move"><textarea id="fancybox_imagecaption" /></textarea>		
 							</td>
 						</tr>
 						<tr>
 							<th>Dimension</th>
-							<td><label for="fancybox_imagewidth">Width</label><input type="text" id="fancybox_imagewidth" name="fancybox_imagewidth" style="width:100px !important;margin-left:20px !important" value="" fw-filter="isFill&isNumber" fw-label="Image_width" /></td>
-							<td><label for="fancybox_imagewidth">Height</label><input type="text" id="fancybox_imageheight" name="fancybox_imageheight" style="width:100px !important;margin-left:20px !important" value="" fw-filter="isFill&isNumber" fw-label="Image_height" /></td>
+							<td>
+								<span><label for="fancybox_imagewidth">Width</label><input type="text" id="fancybox_imagewidth" name="fancybox_imagewidth" style="width:100px !important;margin-left:20px !important" value="" fw-filter="isFill&isNumber" fw-label="Image_width" /></span>
+								<span style="margin-left:20px !important"><label for="fancybox_imagewidth">Height</label><input type="text" id="fancybox_imageheight" name="fancybox_imageheight" style="width:100px !important;margin-left:20px !important" value="" fw-filter="isFill&isNumber" fw-label="Image_height" /></span>
+							</td>
 						</tr>
 						
 						<tr>
@@ -171,6 +177,59 @@ layer big image end -->
 <!-- delete image layer -->
 
 
-
+<!-- modify image layer -->
+<div id='fancybox_modifyimage_popup_contents' style='display:none'>
+	<div class="admin_popup_contents">
+		<div class="msg_warn_box">
+			<p><span>Fill all fields.</span></p>
+	    </div>
+		   <div class="modify_form_wrap">
+			   <form name="fancybox_modify" class="fancybox_modify" method="post" enctype="multipart/form-data">
+					<table border="1" cellspacing="0" class="table_input_vr">
+						<colgroup>
+							<col width="20%" />
+							<col width="80%" />
+						</colgroup>
+						<tr>
+							<th>File</th>
+							<td class="move">
+								<span class="modi_img_wrap"><img src="" alt="Image" /></span>
+								<ul class="image_detail_wrap">
+									<li>Filename : inside1.jpg</li>
+									<li>Filetype : image/jpeg</li>
+									<li>Upload Date : 11/18/2011</li>
+									<li>Size : 230.85Kb</li>
+									<li>Dimensions : 749 x 524</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<th>Title</th>
+							<td class="move"> <input id="fancybox_imagetitle" name="fancybox_imagetitle" style="width:20px;" type="text" value="" fw-filter="isFill&isLengthRange[1][50]" fw-label="Image_title" />		
+							</td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td class="move"><textarea id="fancybox_imagecaption" /></textarea>		
+							</td>
+						</tr>
+						<tr>
+							<th>Alternate Text</th>
+							<td class="move"> <input id="fancybox_imagetitle" name="fancybox_imagetitle" style="width:20px;" type="text" value="" fw-filter="isFill&isLengthRange[1][50]" fw-label="Image_title" />		
+							</td>
+						</tr>
+						<tr>
+							<th>Caption</th>
+							<td class="move"> <input id="fancybox_imagetitle" name="fancybox_imagetitle" style="width:20px;" type="text" value="" fw-filter="isFill&isLengthRange[1][50]" fw-label="Image_title" />		
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" style="mod_btn"><a class="btn_nor_01 btn_width_st1 btn_popup_fix" href="javascript: void(0);" style='cursor:pointer' title="Modify Image" onclick="javascript: adminPageSetup.modify();"> Modify </a></td>
+						</tr>
+					</table>
+			   </form>
+		</div> 
+	</div> 
+</div> 
 
 

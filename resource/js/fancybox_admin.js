@@ -1,6 +1,12 @@
 $(document).ready(function(){
 	$('.msg_warn_box').hide();
-
+	
+	
+	
+	/*$('.modifyThis').live("click", function(){
+		$("#fancybox_addimage_popup_contents").fancybox({'scrolling' : 'no', 'titleShow' : 'false'});
+		popup.load('fancybox_modifyimage_popup_contents').skin('admin').layer({'title' : 'Modify Image','width' : 650});
+	});*/
 });
 
 
@@ -33,7 +39,7 @@ var adminPageSetup = {
 		var imagecaption = $("#fancybox_imagecaption").val();
 		var imagewidth = $("#fancybox_imagewidth").val();
 		var imageheight = $("#fancybox_imageheight").val();
-	
+					
 			$.ajax({
 				type: "POST",
 				url: usbuilder.getUrl("apiContentsAddImage"),
@@ -50,6 +56,29 @@ var adminPageSetup = {
 	        });
 			popup.close('fancybox_addimage_popup_contents');
 	},
+	
+	
+	modifyThis : function(key)
+	{
+alert(key)
+	 	popup.load('fancybox_modifyimage_popup_contents').skin('admin').layer({'title' : 'Modify Image','width' : 650});
+	 	$("#hidden_id").val(key);
+	},
+	
+	modify : function()
+	{
+alert($("#hidden_id").val());
+		$.ajax({
+			type: "POST",
+			url: usbuilder.getUrl("apiContentsModify"),
+			data : {idx : $("#hidden_id").val()}
+		}).done(function( result ) {  
+            oValidator.generalPurpose.getMessage(true, "Modified is successful"); 
+            window.location.href = usbuilder.getUrl("adminPageSetup");
+        });
+		popup.close('fancybox_modifyimage_popup_contents');
+	},
+	
 	
 	checkAll : function(selector)
     {
@@ -107,13 +136,33 @@ var adminPageSetup = {
 	{
 		var image_url = $("#hidden_url_"+key).val();
 		var image_title = $("#hidden_title_"+key).val();
-		var image_width = $("#hidden_width_"+key).val();
-		var image_height = $("#hidden_height_"+key).val();
+		var image_width = parseInt($("#hidden_width_"+key).val());
+		var image_height = parseInt($("#hidden_height_"+key).val());
 	
-		$.fancybox([
-		        	{href : image_url, title : image_title, width : image_width, height : image_height}
-		        
-		        ]);
 		
+		$.fancybox([{
+			maxWidth	: 800,
+			maxHeight	: 600,
+			fitToView	: false,
+			width		: image_width+'%',
+			height		: image_height+'%',
+			autoSize	: false,
+					showCloseButton : true,
+					showNavArrows : true,
+					href : image_url,
+					transitionIn : 'elastic',
+					transitionOut : 'elastic',
+		        	title : image_title,
+		        	
+		        	type : 'image'
+		        	
+		          }]);
+		
+		
+				
 	}
+	
+	
+
+	
 }
