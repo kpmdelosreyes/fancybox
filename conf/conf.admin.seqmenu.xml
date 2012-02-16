@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<adminmenus>  
+    <menu lang="simplesample"  param="SimplesamplePageContentsList" use_most_action="Y">
+        <page lang="simplesample"  param="SimplesamplePageContentsAdd" use_most_action="Y" />
+    </menu>
+</adminmenus>  

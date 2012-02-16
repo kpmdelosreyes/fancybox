@@ -5,11 +5,9 @@ class adminPageSetup extends Controller_Admin
 	protected function run($aArgs)
 	{
 		require_once('builder/builderInterface.php');
-		$sInitScript = usbuilder()->init($this->Request->getAppID(), $aArgs);
-		$this->writeJs($sInitScript);
-		
-		$sFormScript = usbuilder()->getFormAction('fancybox_add','adminExecContentSave');
-		$this->writeJs($sFormScript);
+		usbuilder()->init($this, $aArgs);
+				
+		usbuilder()->getFormAction('fancybox_add','adminExecContentSave');
 		
 		usbuilder()->validator(array('form' => 'fancybox_add'));
 		
@@ -29,11 +27,10 @@ class adminPageSetup extends Controller_Admin
         $sDateClass = $aArgs['sortby'] == 'date_created' && $aArgs['sort'] == 'desc' ? 'des' : 'asc';
         $sApperanceClass = $aArgs['sortby'] == 'idx' && $aArgs['sort'] == 'desc' ? 'des' : 'asc';
       		
-		$oModelContents = new modelFancybox();
-		$aContentsList = $oModelContents->getContents($aOption);
-		$iResultCount = $oModelContents->getResultCount($aOption);
+		$aContentsList = common()->modelContents()->getContents($aOption);
+		$iResultCount = common()->modelContents()->getResultCount($aOption);
 		
-		$aCount['total'] = $oModelContents->getResultCount(array());
+		$aCount['total'] = common()->modelContents()->getResultCount(array());
 		
 		$sDateTimeFormat = 'm/d/Y';
 		$i = 0;

@@ -1,5 +1,5 @@
 <!-- messagebox -->
-<div id="message_box" class="">
+<div id="sdk_message_box" class="">
     <p><span></span></p>
 </div>
 

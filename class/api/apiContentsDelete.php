@@ -5,10 +5,9 @@ class apiContentsDelete extends Controller_Api
 	protected function post($aArgs)
 	{
 		require_once('builder/builderInterface.php');
-	 	usbuilder()->init($this->Request->getAppID(), $aArgs);
+	 	usbuilder()->init($this, $aArgs);
 
-		$oModelContents = new modelFancybox();
-		$bResult = $oModelContents->deleteContents($aArgs[idx]);
+		$bResult = common()->modelContents()->deleteContents($aArgs[idx]);
 		
 	}
 	

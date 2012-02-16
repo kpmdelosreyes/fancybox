@@ -57,4 +57,13 @@ class modelFancybox extends Model
 		return $this->query($sQuery);
 	
 	}
+	
+	
+	function getData($sIdx)
+	{
+		$sQuery = "SELECT * FROM fancybox_contents WHERE idx= '".$sIdx."'";	
+		return $this->query($sQuery, "row");
+	
+	
+	}
 }
