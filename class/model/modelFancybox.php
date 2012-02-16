@@ -63,7 +63,16 @@ class modelFancybox extends Model
 	{
 		$sQuery = "SELECT * FROM fancybox_contents WHERE idx= '".$sIdx."'";	
 		return $this->query($sQuery, "row");
+
+	}
 	
-	
+	function getImages($aOption)
+	{
+		$sQuery = "SELECT * FROM fancybox_contents ORDER BY date_created DESC";
+		if ($aOption['limit']) {
+			$sQuery .= " LIMIT $aOption[offset], $aOption[limit]";
+		}
+		return $this->query($sQuery);
+		
 	}
 }
