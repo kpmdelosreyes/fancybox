@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <lang>
     <menu>  
-        <var name="simplesample">Simple Sample</var>
-        <var name="simplesample_add">Simple Sample Add</var>
-        <var name="simplesample_manage">Manage Simple Sample</var>
+        <var name="fancybox">Fancybox</var>
+        <var name="fancybox_add">Add New Image</var>
         <mostbutton>
-            <var param="SimplesamplePageContentsList">Add New Contents</var>
-            <var param="SimplesamplePageContentsAdd">Add New Contents</var>
+            <var param="FancyboxPageSetup">Add New Image</var>
+            <var param="FancyboxPageAddImage">Add New Image</var>
         </mostbutton>
     </menu>
-    <var name="lang">subject</var>
-    <var name="name">Subject</var>
+    <var name="lang">Language</var>
+    <var name="name">English</var>
 </lang>
+

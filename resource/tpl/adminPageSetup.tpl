@@ -72,7 +72,7 @@
           	 <p><?php echo $value['image_url']; ?></p>
 	         <p><?php echo $value['image_size']; ?></p>
 	      </td>         
-          <td><a href="#none" class="modifyThis" onclick="javascript: adminPageSetup.modifyThis(<?php echo $key; ?>);" title="View Image Details"><?php echo $value['title'];?></a></td>
+          <td><a href="#none" class="modifyThis" onclick="javascript: adminPageSetup.modifyThis(<?php echo $value['idx'];?>);" title="View Image Details"><?php echo $value['title'];?></a></td>
           <td><?php echo $value['date_created'];?></td>
           <td><?php echo $value['idx'];?></td>    
     
@@ -97,7 +97,7 @@
     <div class="table_display_set">
     	<a href="#none" onclick="adminPageSetup.deletePopup();" class="btn_nor_01 btn_width_st1" title="Remove selected images">Remove</a>
     </div>
-    <span id="myspan" style="text-decoration: underline; cursor:pointer;">click to view gallery</span>
+    
     <div class="tbl_btom_rgt">
     	<a href="#none" onclick="adminPageSetup.Change();" class="btn_nor_01 btn_width_st2" title="Rearrange images">Rearrange</a>
     </div>
@@ -210,15 +210,16 @@ layer big image end -->
 						</tr>
 						<tr>
 							<th>Title</th>
-							<td class="move"> <input id="imagetitle" name="imagetitle" style="width:20px;" type="text" fw-filter="isFill&isLengthRange[1][50]" fw-label="Image_title" />		
+							<td class="move"> <input type="text" id="imagetitle" name="imagetitle" style="width:20px;"  value="" fw-filter="isFill&isLengthRange[1][50]" fw-label="Image_title" />		
 							</td>
 						</tr>
 						<tr>
 							<th>Caption</th>
-							<td class="move"> <input id="imagecaption" name="imagecaption" style="width:20px;" type="text" fw-filter="isFill&isLengthRange[1][50]" fw-label="Image_caption" />		
+							<td class="move"> <input type="text" id="imagecaption" name="imagecaption" style="width:20px;"  value=""  fw-filter="isFill&isLengthRange[1][50]" fw-label="Image_caption" />		
 							</td>
 						</tr>
 						<tr>
+						<input type="hidden" id="hidden_idx" name="hidden_idx" value="" />
 							<td colspan="2" style="mod_btn"><a class="btn_nor_01 btn_width_st1 btn_popup_fix" href="javascript: void(0);" style='cursor:pointer' title="Modify Image" onclick="javascript: adminPageSetup.modify();"> Modify </a></td>
 						</tr>
 					</table>

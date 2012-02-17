@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	
 	$('.msg_warn_box').hide();
 
 });
@@ -45,7 +46,8 @@ var adminPageSetup = {
 						imageurl : imageurl,
 						imagewidth : imagewidth, 
 						imageheight : imageheight
-					   }
+					   },
+			 cache: false
 			}).done(function( result ) {
 				sdk_message.show('Saved succesfully', 'success');
 				sdk_popup.close('fancybox_addimage_popup_contents');
@@ -60,34 +62,65 @@ var adminPageSetup = {
 	},
 	
 	
-	modifyThis : function(key)
+	modifyThis : function(idx)
 	{
-		var ext = $("#hidden_url_"+key).val().split('.').pop().toLowerCase();
-		var idx = $("#hidden_id").val($("#hidden_id_"+key).val());
-		
+	
 		 $.ajax({
-				type: "GET",
-				url: usbuilder.getUrl("apiContentsGetData"),
-				data : {idx : idx }
-			}).done(function( result ) {
-				alert(result);
+			 	url: usbuilder.getUrl("apiContentsGetData"),
+				type: "POST",
+				dataType : 'JSON',
+				data : {
+						 idx : idx 
+					   },
+				success : function(result) {
+					sdk_popup.load('fancybox_modifyimage_popup_contents').skin('admin').layer({'title' : 'Modify Image','width' : 650});
+							
+					 	//var ext = $("#hidden_url_"+key).val().split('.').pop().toLowerCase();
+				 		$("#hidden_idx").val(result.Data.idx);
+					 	$("#realimage").html('<img src="'+result.Data.image_url+'" alt="Image" style="width: 146px; height:150px;" />');
+					 	$("#imageURL").html('Image URL: <a href="#none" style="color:#5d7cb8" >' + result.Data.image_url + "</a>");
+						$("#imagetitle").val(result.Data.title);
+						$("#filetype").html("Filetype : image/jpeg");
+						$("#imagecaption").val(result.Data.caption);
+						$("#upload_date").html("Upload Date : " + result.Data.date_created);
+						//$("#size").html("Size : 100kb");
+						$("#dimension").html("Dimension : " + result.Data.width + 'x' + result.Data.height);
+						
+				
+					}
+			
 	        });
-	 		
-		sdk_popup.load('fancybox_modifyimage_popup_contents').skin('admin').layer({'title' : 'Modify Image','width' : 650});
+		 
+		
 	},
 	
 	modify : function()
 	{
-
-		$.ajax({
-			type: "POST",
-			url: usbuilder.getUrl("apiContentsModify"),
-			data : {idx : $("#hidden_id").val()}
-		}).done(function( result ) { 
-			sdk_message.show('Modified is successful', 'success');
-            window.location.href = usbuilder.getUrl("adminPageSetup");
-        });
-		sdk_popup.close('fancybox_modifyimage_popup_contents');
+		
+		var idx = $("#hidden_idx").val();
+		var imagetitle = $("#imagetitle").val();
+		var imagecaption = $("#imagecaption").val();
+		
+		if(oValidator.formName.getMessage('fancybox_modify'))
+        {
+            //document.fancybox_modify.submit();
+			$.ajax({
+				url: usbuilder.getUrl("apiContentsModify"),
+				type: "POST",
+				data : {idx : idx, imagetitle : imagetitle, imagecaption : imagecaption},
+				cache: false
+			}).done(function(result) {
+				sdk_message.show('Modified is successful', 'success');
+				sdk_popup.close('fancybox_modifyimage_popup_contents');
+	            window.location.href = usbuilder.getUrl("adminPageSetup");
+	        });
+        }
+        else{
+        	sdk_message.show('Fill all fields', 'warning');
+        	
+        }
+		
+		
 	},
 	
 	
@@ -134,7 +167,8 @@ var adminPageSetup = {
 			$.ajax({
 				type: "POST",
 				url: usbuilder.getUrl("apiContentsDelete"),
-				data : {idx : idx}
+				data : {idx : idx},
+				 cache: false
 			}).done(function( result ) {  
 				sdk_message.show('Deleted succesfully', 'success');
 	            window.location.href = usbuilder.getUrl("adminPageSetup");

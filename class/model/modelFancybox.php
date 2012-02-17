@@ -53,7 +53,7 @@ class modelFancybox extends Model
 	function updateContents($aData)
 	{
 
-		$sQuery = "UPDATE fancybox_contents SET title ='".$aData[image_title]."', caption = '".$aData[image_caption]."' date_modified = ". time() . " WHERE idx=".$aData['idx'];
+		$sQuery = "UPDATE fancybox_contents SET title ='".$aData[imagetitle]."', caption = '".$aData[imagecaption]."', date_modified = ". time() . " WHERE idx= '".$aData[idx]."'";
 		return $this->query($sQuery);
 	
 	}
@@ -61,7 +61,7 @@ class modelFancybox extends Model
 	
 	function getData($sIdx)
 	{
-		$sQuery = "SELECT * FROM fancybox_contents WHERE idx= '".$sIdx."'";	
+		$sQuery = "SELECT * FROM fancybox_contents WHERE idx=".$sIdx;	
 		return $this->query($sQuery, "row");
 
 	}
