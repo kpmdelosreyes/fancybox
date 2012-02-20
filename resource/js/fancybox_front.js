@@ -1,44 +1,33 @@
-/*$(document).ready(function(){
-	
-	
-	
-	$(".fancybox-thumb").click(function(){
+$(document).ready(function(){
+
+	$("a[rel='gallery']").fancybox({
 		
-		var img_url = $(this).find('img').attr('src');
-		$.fancybox(
-		
-			'<img src="'+img_url+'" alt="" title="mickey" />',
+		showCloseButton : false,
+		padding			: 0,
+		width        	: 250,
+		height         	: 250,
+		transitionIn	: "elastic",
+		transitionOut	: "elastic",
+		cyclic  		: true,
+		type			: "image",
+		changeFade      : 0,
+		easingIn		: "swing",
+		easingOut		: "swing",
 			
-			{
-				
-				'width'         	: 400,
-				'height'        	: 400,
-				'transitionIn'		: 'elastic',
-				'transitionOut'		: 'elastic'
-			}
-		);
-		
+		helpers         : {
+						     title : {
+						    			type : "inside"
+						    		 }
+						    			
+						  },
+        afterLoad    	: function() {
+										this.title = '<div id="tip7-title"><span><a href="#" onclick="$.fancybox.close();"><img src="/_sdk/img/fancybox/closelabel.gif" /></a></span>' + (this.title && this.title.length ? '<b>' + this.title + '</b>' : '') + 'Image ' + (this.index + 1) + ' of ' + this.group.length + '</div>' ;
+										
+								     }
+	
 	});
 	
-	frontPageFancybox.displayImg();
+	
 
 });
 
-
-var frontPageFancybox = {
-		
-	displayImg : function()
-	{
-		
-		var countDisplay = parseInt($("#display_img").val());
-		
-		var iDisplay = Math.ceil(countDisplay / 9);
-		
-		if(countDisplay > 9)
-			{
-			alert("next");
-			}
-	},
-	
-	
-}*/

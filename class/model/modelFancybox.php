@@ -75,4 +75,6 @@ class modelFancybox extends Model
 		return $this->query($sQuery);
 		
 	}
+	
+	
 }
