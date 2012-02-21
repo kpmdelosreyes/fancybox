@@ -21,7 +21,7 @@ var adminPageSetup = {
 	
 	mostAction : function()
 	{
-		sdk_popup.load('fancybox_addimage_popup_contents').skin('admin').layer({'title' : 'Add Image','width' : 650});
+		sdk_popup.load('fancybox_addimage_popup_contents').skin('admin').layer({'title' : 'Add Image','width' : 650, 'classname': 'ly_set ly_editor'});
 		
 	},
 	
@@ -73,8 +73,9 @@ var adminPageSetup = {
 						 idx : idx 
 					   },
 				success : function(result) {
-					sdk_popup.load('fancybox_modifyimage_popup_contents').skin('admin').layer({'title' : 'Modify Image','width' : 650});
-							
+					sdk_popup.load('fancybox_modifyimage_popup_contents').skin('admin').layer({'title' : 'Modify Image','width' : 650, 'classname': 'ly_set ly_editor'});
+				
+		
 					 	//var ext = $("#hidden_url_"+key).val().split('.').pop().toLowerCase();
 				 		$("#hidden_idx").val(result.Data.idx);
 					 	$("#realimage").html('<img src="'+result.Data.image_url+'" alt="Image" style="width: 146px; height:150px;" />');
@@ -148,7 +149,7 @@ var adminPageSetup = {
         	sdk_message.show('No item(s) selected.', 'warning');
 		}
 	 	else{
-	 		sdk_popup.load('fancybox_delete_popup_contents').skin('admin').layer({'title' : 'Delete','width' : 300});
+	 		sdk_popup.load('fancybox_delete_popup_contents').skin('admin').layer({'title' : 'Delete','width' : 300, 'classname': 'ly_set ly_editor'});
 	 	}
     	
     },
@@ -191,8 +192,6 @@ var adminPageSetup = {
 					width		: image_width+'%',
 					height		: image_height+'%',
 					autoSize	: false,
-					showCloseButton : true,
-					showNavArrows : true,
 					href : image_url,
 					transitionIn : 'elastic',
 					transitionOut : 'elastic',

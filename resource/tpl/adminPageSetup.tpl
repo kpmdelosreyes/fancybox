@@ -114,8 +114,8 @@ layer big image end -->
 				<li><a href="">From Computer</a></li>
 				<li><a href="" class="active">From Media</a></li>
 		   </ul>-->
-		   <div class="sub_title"><span>From Media</span></div>
-		   <div class="add_form_wrap">
+		   <div class="sub_title" style="margin-top:20px;"><span>From Media</span></div>
+		   <div class="add_form_wrap" style="margin-top:19px;">
 			   <form name="fancybox_add" class="fancybox_add" method="post" enctype="multipart/form-data">
 					<table border="1" cellspacing="0" class="table_input_vr">
 						<colgroup>
@@ -140,17 +140,18 @@ layer big image end -->
 						<tr>
 							<th>Dimension</th>
 							<td>
-								<span><label for="fancybox_imagewidth">Width</label><input type="text" id="fancybox_imagewidth" name="fancybox_imagewidth" style="width:100px !important;margin-left:20px !important" value="" fw-filter="isFill&isNumber" fw-label="Image_width" /></span>
-								<span style="margin-left:20px !important"><label for="fancybox_imagewidth">Height</label><input type="text" id="fancybox_imageheight" name="fancybox_imageheight" style="width:100px !important;margin-left:20px !important" value="" fw-filter="isFill&isNumber" fw-label="Image_height" /></span>
+								<p style="margin-bottom:10px"><label style="width:90px;display:inline-block" for="fancybox_imagewidth">Width</label><input type="text" id="fancybox_imagewidth" name="fancybox_imagewidth" style="width:200px !important;margin-right:10px !important" value="" fw-filter="isFill&isNumber" fw-label="Image_width" /></p>
+								<p style=""><label style="width:90px;display:inline-block" for="fancybox_imagewidth">Height</label><input type="text" id="fancybox_imageheight" name="fancybox_imageheight" style="width:200px !important;margin-right:10px !important" value="" fw-filter="isFill&isNumber" fw-label="Image_height" /></p>
 							</td>
 						</tr>
 						
 						<tr>
-							<td colspan="2"><a class="btn_nor_01 btn_width_st1" href="javascript: void(0);" style='cursor:pointer' title="Add Image" onclick="javascript: adminPageSetup.addImage();"> Add </a></td>
+							<td colspan="2" style="text-align:center"><a class="btn_nor_01 btn_width_st1" href="javascript: void(0);" style='cursor:pointer;display:inline-block' title="Add Image" onclick="javascript: adminPageSetup.addImage();"> Add </a></td>
 						</tr>
 					</table>
 			   </form>
-		</div> 
+		</div>
+		<a id="id_close_popup" class="clse" title="popup close" onclick="addonMedia.close()" href="#none">X</a> 		
 	</div> 
 </div> 
 
@@ -204,8 +205,8 @@ layer big image end -->
 							</td>
 						</tr>
 						<tr>
-						<input type="hidden" id="hidden_idx" name="hidden_idx" value="" />
-							<td colspan="2" style="mod_btn"><a class="btn_nor_01 btn_width_st1 btn_popup_fix" href="javascript: void(0);" style='cursor:pointer' title="Modify Image" onclick="javascript: adminPageSetup.modify();"> Modify </a></td>
+							
+							<td colspan="2" style="text-align:center"><input type="hidden" id="hidden_idx" name="hidden_idx" value="" /><a class="btn_nor_01 btn_width_st1 btn_popup_fix" href="javascript: void(0);" style='cursor:pointer' title="Modify Image" onclick="javascript: adminPageSetup.modify();"> Modify </a></td>
 						</tr>
 					</table>
 			   </form>

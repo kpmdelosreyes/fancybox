@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?> 
 	<adminmenus>
-		<menu lang="fancybox" param="FancyboxPageSetup" use_most_action="Y">
+		<menu lang="fancybox" >
 			<page lang="fancybox_add" param="FancyboxPageAddImage" use_most_action="Y" /> 
 		</menu>
 	</adminmenus>
+	
