@@ -18,18 +18,7 @@
 	<ul class="row_2">
         <li>
 		    <a href="#none" onclick="adminPageSetup.deletePopup();" class="btn_nor_01 btn_width_st1" title="Remove selected images">Remove</a>
-		</li>                
-		<li class="show">
-		    <label for="show_row">Show Rows</label>
-		    <select id="show_row">
-		        <option value="10">10</option>
-		        <option value="20">20</option>
-		        <option value="30">30</option>
-		
-		        <option value="50">50</option>
-		        <option value="100">100</option>
-		    </select>
-		</li>                		   
+		</li>                     		   
     </ul>
 </div>
 <!-- table horizontal -->
@@ -41,7 +30,7 @@
         <col width="200px" />
         <col />
         <col width="120px" />
-        <col width="125px" />
+      
     </colgroup>
 
     <thead>
@@ -52,7 +41,7 @@
        <th><a href="<?php echo usbuilder()->getUrl("adminPageSetup") .'&sortby=image_url&sort='.$catClass1 ;?>" class="<?php echo $filenameClass;?>">Filename</a></th>
        <th width="150px"><a href="<?php echo usbuilder()->getUrl("adminPageSetup") .'&sortby=title&sort='.$catClass1;?>" class="<?php echo $titleClass;?>">Title</a></th>
        <th width="150px"><a href="<?php echo usbuilder()->getUrl("adminPageSetup") .'&sortby=date_created&sort=' .$catClass1;?>" class="<?php echo $dateClass;?>">Date Created</a></th>
-       <th width="150px"><a href="<?php echo usbuilder()->getUrl("adminPageSetup") .'&sortby=appearance&sort='.$catClass1;?>" class="<?php echo $datemodifiedClass;?>">Appearance</a></th>
+
     </tr>
     </thead>
     <tbody>
@@ -74,7 +63,7 @@
 	      </td>         
           <td><a href="#none" class="modifyThis" onclick="javascript: adminPageSetup.modifyThis(<?php echo $value['idx'];?>);" title="View Image Details"><?php echo $value['title'];?></a></td>
           <td><?php echo $value['date_created'];?></td>
-          <td><?php echo $value['idx'];?></td>    
+       
     
           <input type="hidden"  name="hidden_id" id="hidden_id_<?php echo $key?>" value="<?php echo $value['idx']; ?>" />
           <input type="hidden"  name="hidden_url" id="hidden_url_<?php echo $key?>"  value="<?php echo $value['image_url']; ?>" />
@@ -96,10 +85,6 @@
 
     <div class="table_display_set">
     	<a href="#none" onclick="adminPageSetup.deletePopup();" class="btn_nor_01 btn_width_st1" title="Remove selected images">Remove</a>
-    </div>
-    
-    <div class="tbl_btom_rgt">
-    	<a href="#none" onclick="adminPageSetup.Change();" class="btn_nor_01 btn_width_st2" title="Rearrange images">Rearrange</a>
     </div>
     
     <div class="pagination"><?php echo $sPagination;?></div>
@@ -144,7 +129,7 @@ layer big image end -->
 						</tr>
 						<tr>
 							<th>Title</th>
-							<td class="move"> <input id="fancybox_imagetitle" name="fancybox_imagetitle" style="width:20px;" type="text" value="" fw-filter="isFill&isLengthRange[1][50]" fw-label="Image_title" />		
+							<td class="move"> <input id="fancybox_imagetitle" name="fancybox_imagetitle" style="width:20px;" type="text" value="" fw-filter="isFill&isLengthRange[1][100]" fw-label="Image_title" />		
 							</td>
 						</tr>
 						<tr>
