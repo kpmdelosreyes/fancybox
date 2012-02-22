@@ -6,7 +6,8 @@ class apiContentsAddImage extends Controller_Api
 	{
 		require_once('builder/builderInterface.php');
 		usbuilder()->init($this, $aArgs);
-				
+		
+		$aData['seq'] = $aArgs['seq'];
 		$aData['imagetitle'] = $aArgs['imagetitle'];
 		$aData['imagecaption'] = $aArgs['imagecaption'];
 		$aData['imageurl'] = $aArgs['imageurl'];

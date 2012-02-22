@@ -7,7 +7,7 @@ class apiContentsGetData extends Controller_Api
 		require_once('builder/builderInterface.php');
 		usbuilder()->init($this, $aArgs);
 		
-		$bResult = common()->modelContents()->getData($aArgs['idx']);
+		$bResult = common()->modelContents()->getData($aArgs);
 		 
 		$sDateTimeFormat = 'm/d/Y';
 		$bResult['date_created'] = date($sDateTimeFormat, $bResult['date_created']);

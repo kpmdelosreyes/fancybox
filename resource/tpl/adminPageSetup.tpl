@@ -64,7 +64,7 @@
           <td><a href="#none" class="modifyThis" onclick="javascript: adminPageSetup.modifyThis(<?php echo $value['idx'];?>);" title="View Image Details"><?php echo $value['title'];?></a></td>
           <td><?php echo $value['date_created'];?></td>
        
-    
+    	  <input type="hidden" id="seq" name="seq" value="<?php echo $value['seq']; ?>" />
           <input type="hidden"  name="hidden_id" id="hidden_id_<?php echo $key?>" value="<?php echo $value['idx']; ?>" />
           <input type="hidden"  name="hidden_url" id="hidden_url_<?php echo $key?>"  value="<?php echo $value['image_url']; ?>" />
           <input type="hidden"  name="hidden_size" id="hidden_size_<?php echo $key?>" value="<?php echo $value['image_size']; ?>" />  
@@ -78,6 +78,7 @@
 	<?php endforeach;?>
 	
 	<?php } ?>
+
 	<input type="hidden"  name="hidden_id" id="hidden_id" value="" />
 	<input type="hidden"  name="hidden_images" id="hidden_images" value="<?php echo $images;?>" />
     </tbody>
@@ -117,6 +118,7 @@ layer big image end -->
 		   <div class="sub_title" style="margin-top:20px;"><span>From Media</span></div>
 		   <div class="add_form_wrap" style="margin-top:19px;">
 			   <form name="fancybox_add" class="fancybox_add" method="post" enctype="multipart/form-data">
+			        <input type="hidden" id="seq" name="seq" value="<?php echo $seq; ?>" />
 					<table border="1" cellspacing="0" class="table_input_vr">
 						<colgroup>
 							<col width="20%" />
@@ -176,6 +178,7 @@ layer big image end -->
 	    </div>
 		   <div class="modify_form_wrap">
 			   <form name="fancybox_modify" class="fancybox_modify" method="post" enctype="multipart/form-data">
+			    <input type="hidden" id="seq" name="seq" value="<?php echo $seq; ?>" />
 					<table border="1" cellspacing="0" class="table_input_vr">
 						<colgroup>
 							<col width="20%" />
