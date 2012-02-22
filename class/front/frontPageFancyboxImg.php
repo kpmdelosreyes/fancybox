@@ -22,6 +22,8 @@ class frontPageFancyboxImg extends Controller_Front
         
         foreach ($aContentsList as $key => $val)
         {
+        	
+        	$aContentsList[$key]['title'] = ucwords($aContentsList[$key]['title']);
             $aContentsList[$key]['date_created'] = date('Y-m-d H:i:s', $val['date_created']);
         }
 

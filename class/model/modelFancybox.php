@@ -4,16 +4,15 @@ class modelFancybox extends Model
 {
 	function getContents($aOption)
 	{
-		$sQuery = "SELECT * FROM fancybox_contents";
-		
+		$sQuery = "SELECT * FROM fancybox_contents WHERE seq = " . $aOption[seq];
 		if($aOption['search'] != false)
 		{
-			$sQuery .= " WHERE image_url LIKE '%".$aOption[search]."%' OR title LIKE '%".$aOption[search]."%' ";
+			$sQuery .= " AND image_url LIKE '%".$aOption[search]."%' OR title LIKE '%".$aOption[search]."%' ";
 		}
 		
 		if($aOption['image_url'] != false)
 		{
-			$sQuery .= " WHERE image_url LIKE '%".$aOption[image_url]."%' ";
+			$sQuery .= " AND image_url LIKE '%".$aOption[image_url]."%' ";
 		}
 	 	if ($aOption['sortby']) {
 			$sQuery .= " ORDER BY $aOption[sortby] $aOption[sort]";
@@ -30,18 +29,19 @@ class modelFancybox extends Model
 	
 	function insertContents($aData)
 	{
-		$sQuery = "INSERT INTO fancybox_contents (title, caption, image_url, width, height, date_created)
-		VALUES('$aData[imagetitle]', '$aData[imagecaption]' , '$aData[imageurl]', '$aData[imagewidth]' , '$aData[imageheight]', " . time() . " )";
+		$sQuery = "INSERT INTO fancybox_contents (seq, title, caption, image_url, width, height, date_created)
+		VALUES('$aData[seq]','$aData[imagetitle]', '$aData[imagecaption]' , '$aData[imageurl]', '$aData[imagewidth]' , '$aData[imageheight]', " . time() . " )";
 	
 		return $this->query($sQuery);
 	}
 	
 	function getResultCount($aOption)
-	{
-		$sQuery = "SELECT count(*) as count FROM fancybox_contents";
-		$mResult = $this->query($sQuery);
-		return $mResult[0]['count'];
-	}
+    {
+        $sQuery = "SELECT count(*) as count FROM fancybox_contents";
+        $mResult = $this->query($sQuery);
+        return $mResult[0]['count'];
+    }
+    
 	
 	function deleteContents($sIdx)
 	{
@@ -59,11 +59,10 @@ class modelFancybox extends Model
 	}
 	
 	
-	function getData($sIdx)
+	function getData($aData)
 	{
-		$sQuery = "SELECT * FROM fancybox_contents WHERE idx=".$sIdx;	
+		$sQuery = "SELECT * FROM fancybox_contents WHERE idx='".$aData[idx]."'";
 		return $this->query($sQuery, "row");
-
 	}
 	
 	function getImages($aOption)
@@ -74,5 +73,23 @@ class modelFancybox extends Model
 		}
 		return $this->query($sQuery);
 		
+	}	
+	
+	function getSeqCount($aData)
+	{
+		$sQuery = "SELECT count(*) AS value FROM fancybox_contents WHERE seq=" .$aData['seq'];
+		$mResult = $this->query($sQuery);
+        return $mResult[0]['value'];
 	}
+	
+	
+	function deleteContentsBySeq($aSeq)
+	{
+		$sSeqs = implode(',', $aSeq);
+		$sQuery = "Delete from fancybox_contents where seq in($sSeqs)";
+		$mResult = $this->query($sQuery);
+		return $mResult;
+	}
+	
+	
 }

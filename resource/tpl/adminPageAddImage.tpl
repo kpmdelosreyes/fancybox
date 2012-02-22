@@ -29,7 +29,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2"><a class="btn_nor_01 btn_width_st1" href="javascript: void(0);" style='cursor:pointer' title="Add Image" onclick="javascript: adminPageSetup.addImage();"> Add </a></td>
+							<td colspan="2" style="border:1px solid red"><a class="btn_nor_01 btn_width_st1" href="javascript: void(0);" style='cursor:pointer' title="Add Image" onclick="javascript: adminPageSetup.addImage();"> Add </a></td>
 						</tr>
 					</table>
 			   </form>

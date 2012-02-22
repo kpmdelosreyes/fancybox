@@ -7,27 +7,15 @@ $(document).ready(function(){
 
 var adminPageSetup = {
 		
-	saveSetting : function()
-	{
-		if(oValidator.formName.getMessage('fancybox_save'))
-        {
-            document.fancybox_save.submit();
-        }
-        else{
-        	sdk_message.show('Fill all fields', 'warning');
-        }
-	}, 
-	
-	
 	mostAction : function()
 	{
-		sdk_popup.load('fancybox_addimage_popup_contents').skin('admin').layer({'title' : 'Add Image','width' : 650});
+		sdk_popup.load('fancybox_addimage_popup_contents').skin('admin').layer({'title' : 'Add Image','width' : 650, 'classname': 'ly_set ly_editor'});
 		
 	},
 	
 	addImage : function()
 	{
-		
+		var seq = $("#seq").val();
 		var imageurl = $("#fancybox_imageurl").val();
 		var imagetitle = $("#fancybox_imagetitle").val();
 		var imagecaption = $("#fancybox_imagecaption").val();
@@ -41,6 +29,7 @@ var adminPageSetup = {
 				type: "POST",
 				url: usbuilder.getUrl("apiContentsAddImage"),
 				data : {
+						seq : seq,
 						imagetitle : imagetitle,
 						imagecaption: imagecaption,
 						imageurl : imageurl,
@@ -51,7 +40,7 @@ var adminPageSetup = {
 			}).done(function( result ) {
 				sdk_message.show('Saved succesfully', 'success');
 				sdk_popup.close('fancybox_addimage_popup_contents');
-	            window.location.href = usbuilder.getUrl("adminPageSetup");
+	            window.location.href = usbuilder.getUrl("adminPageSetup") + "&seq=" + seq;
 	        });
         }
         else{
@@ -64,17 +53,18 @@ var adminPageSetup = {
 	
 	modifyThis : function(idx)
 	{
-	
-		 $.ajax({
+		var seq = $("#seq").val(); 
+		$.ajax({
 			 	url: usbuilder.getUrl("apiContentsGetData"),
 				type: "POST",
 				dataType : 'JSON',
 				data : {
-						 idx : idx 
+						 idx : idx, seq : seq
 					   },
 				success : function(result) {
-					sdk_popup.load('fancybox_modifyimage_popup_contents').skin('admin').layer({'title' : 'Modify Image','width' : 650});
-							
+					sdk_popup.load('fancybox_modifyimage_popup_contents').skin('admin').layer({'title' : 'Modify Image','width' : 650, 'classname': 'ly_set ly_editor'});
+				
+		
 					 	//var ext = $("#hidden_url_"+key).val().split('.').pop().toLowerCase();
 				 		$("#hidden_idx").val(result.Data.idx);
 					 	$("#realimage").html('<img src="'+result.Data.image_url+'" alt="Image" style="width: 146px; height:150px;" />');
@@ -96,7 +86,7 @@ var adminPageSetup = {
 	
 	modify : function()
 	{
-		
+		var seq = $("#seq").val();
 		var idx = $("#hidden_idx").val();
 		var imagetitle = $("#imagetitle").val();
 		var imagecaption = $("#imagecaption").val();
@@ -107,12 +97,12 @@ var adminPageSetup = {
 			$.ajax({
 				url: usbuilder.getUrl("apiContentsModify"),
 				type: "POST",
-				data : {idx : idx, imagetitle : imagetitle, imagecaption : imagecaption},
+				data : {seq : seq, idx : idx, imagetitle : imagetitle, imagecaption : imagecaption},
 				cache: false
 			}).done(function(result) {
 				sdk_message.show('Modified is successful', 'success');
 				sdk_popup.close('fancybox_modifyimage_popup_contents');
-	            window.location.href = usbuilder.getUrl("adminPageSetup");
+	            window.location.href = usbuilder.getUrl("adminPageSetup") + "&seq=" + seq;
 	        });
         }
         else{
@@ -148,7 +138,7 @@ var adminPageSetup = {
         	sdk_message.show('No item(s) selected.', 'warning');
 		}
 	 	else{
-	 		sdk_popup.load('fancybox_delete_popup_contents').skin('admin').layer({'title' : 'Delete','width' : 300});
+	 		sdk_popup.load('fancybox_delete_popup_contents').skin('admin').layer({'title' : 'Delete','width' : 300, 'classname': 'ly_set ly_editor'});
 	 	}
     	
     },
@@ -157,7 +147,6 @@ var adminPageSetup = {
     deleteCheckedvalues : function()
 	{
     	
-		
 		var fields = $(".input_chk").serializeArray();
 		var idx = "";
 		$.each(fields,function(i,field){
@@ -167,7 +156,7 @@ var adminPageSetup = {
 			$.ajax({
 				type: "POST",
 				url: usbuilder.getUrl("apiContentsDelete"),
-				data : {idx : idx},
+				data : {idx : idx, seq : seq},
 				 cache: false
 			}).done(function( result ) {  
 				sdk_message.show('Deleted succesfully', 'success');
@@ -191,8 +180,6 @@ var adminPageSetup = {
 					width		: image_width+'%',
 					height		: image_height+'%',
 					autoSize	: false,
-					showCloseButton : true,
-					showNavArrows : true,
 					href : image_url,
 					transitionIn : 'elastic',
 					transitionOut : 'elastic',

@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>  
-<adminmenus>  
-    <menu lang="simplesample"  param="SimplesamplePageContentsList" use_most_action="Y">
-        <page lang="simplesample"  param="SimplesamplePageContentsAdd" use_most_action="Y" />
+<?xml version="1.0" encoding="utf-8"?>
+<adminmenus>
+    <menu lang="menu_contents" param="FancyboxPageSetup" use_most_action="Y">
+    	<page lang="menu_contents" param="FancyboxPageSetup" use_most_action="Y" />
     </menu>
-</adminmenus>  
+	
+</adminmenus>
+

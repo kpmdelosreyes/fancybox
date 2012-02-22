@@ -7,6 +7,7 @@ class adminPageAddImage extends Controller_Admin
 		require_once('builder/builderInterface.php');
         $sInitScript = usbuilder()->init($this->Request->getAppID(), $aArgs);
         $this->writeJs($sInitScript);
+       
         
         $sFormScript = usbuilder()->getFormAction('fancybox_add','adminExecContentSave');
         $this->writeJs($sFormScript);

@@ -7,7 +7,8 @@ class adminExecContentSave extends Controller_AdminExec
 		
 		require_once('builder/builderInterface.php');
 		usbuilder()->init($this, $aArgs);
-			
+		
+		$aData['seq'] = $aArgs['seq'];
 		$aData['imagetitle'] = $aArgs['imagetitle'];
 		$aData['imagecaption'] = $aArgs['imagecaption'];
 		$aData['imageurl'] = $aArgs['imageurl'];
